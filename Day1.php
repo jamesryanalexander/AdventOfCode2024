@@ -22,15 +22,4 @@ $diffarray = array_map(function($a, $b) {
 $difftotal = array_sum($diffarray);
 echo $difftotal;
 
-
-//foreach($idsleft) {
-//	$diff1 = abs($idsright[$addn]-$idsleft[$addn]);
-//	$difftotal += $diff1;
-//	echo $addn."  ".$difftotal.PHP_EOL;
-//	$addn++;
-//}
-//echo "2"
-//echo $difftotal;
-//print_r($idsright);
-//print_r($idsleft);
 ?>
