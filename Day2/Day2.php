@@ -15,7 +15,6 @@ foreach ($day2input as $i => $report) {
 	$lastkey = array_key_last($report_array);
 	//increment the report tracker for testing and echo
 	$howmanyreports++;
-	echo "starting report number ".$howmanyreports.PHP_EOL;
 	//keeping track of last report number as we go through the rules, each line should start at 0
 	$lastreportnum = 0;
 	// need to track if the line is going up or down
@@ -24,35 +23,27 @@ foreach ($day2input as $i => $report) {
 	//iterate over rules for each report line
 	foreach ($report_array as $ir => $reportnum) {
 		//start off checking if this is the first report (nothing to compare to)
-		echo "Report number ".$howmanyreports." iteration number ".$ir." lastreportnum is ".$lastreportnum." and reportnum is ".$reportnum.PHP_EOL;
 		if ($lastreportnum == 0) {
-			echo "apparently lasreportnum equals 0".PHP_EOL;
 			//if so set to lastreport num and report out to terminal
 			$lastreportnum = $reportnum;
-			echo "first report number of line is ".$lastreportnum.PHP_EOL;
 			// otherwise check if it's less 
 			continue;
 		} elseif (($lastreportnum > $reportnum)) {
 			if (($goingdown !== false)) {
 				$goingdown = true;
 				$goingup = false;
-				echo $reportnum." is less than ".$lastreportnum.PHP_EOL;
 					if ($lastreportnum - $reportnum <= 3) {
 						// difference less than 3 so not going down too fast
-						echo "it is also not going down too fast so continue".PHP_EOL;
 							if ($ir == $lastkey) {
 								$safereports++;
-								echo "end of report and still safe! Safe reports now at ".$safereports.PHP_EOL;
 								break;
 							}
 						$lastreportnum = $reportnum;
 						continue;
 					} else {
-						echo "going down too fast so this report is not safe".PHP_EOL;
 						break;
 					}
 			} else {
-				echo "report change directions so this report is not safe ".PHP_EOL;
 				break;
 			}
 			
@@ -61,37 +52,30 @@ foreach ($day2input as $i => $report) {
 			if (($goingup !== false)) {
 				$goingdown = false;
 				$goingup = true;
-				echo $reportnum." is more than ".$lastreportnum.PHP_EOL;
 					if ($reportnum - $lastreportnum <= 3) {
 						// difference less than 3 so not going down too fast
-						echo "it is also not going up too fast so continue".PHP_EOL;
 							if ($ir == $lastkey) {
 								$safereports++;
-								echo "end of report and still safe! Safe reports now at ".$safereports.PHP_EOL;
 								break;
 							}
 						$lastreportnum = $reportnum;
 						continue;
 					} else {
-						echo "going up too fast so this report is not safe".PHP_EOL;
 						break;
 					}
 			} else {
-				echo "report change directions so this report is not safe ".PHP_EOL;
 				break;
 			}
 			
 		} elseif (($lastreportnum != 0) && ($lastreportnum == $reportnum)) {
-			echo "Report is equal to the last and so therefore not decreasing or increasing and unsafe".PHP_EOL;
 			break;
 		} else {
-			echo "hmm not sure why we got here but assuming not safe and moving on, look into this!".PHP_EOL;
 		}
 	}
 
 	
 }
 
-echo "last report processed! Total number of safe reports: ".$safereports.PHP_EOL."goingdown was ".$goingdown." going up was ".$goingup." lastreportnum was ".$lastreportnum." reportnum was ".$reportnum.PHP_EOL;
+echo "last report processed! Total number of safe reports: ".$safereports.PHP_EOL
 
 ?>
